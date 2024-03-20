@@ -1,0 +1,31 @@
+from tkinter import *
+from gtts import gTTS
+from playsound import playsound
+
+scr = Tk()
+scr.geometry('350x300')
+scr.resizable(0,0)
+scr.title('hndsa for text to speech')
+scr.config(bg='ghost white')
+Label(scr,text='Text-speech',font='arial 20 bold').pack()
+Label(scr,text="enter ur text",font='arial 15 bold').place(x=20,y=60)
+Msg = StringVar()
+enter = Entry(scr,textvariable=Msg,width=50)
+enter.place(x = 20,y = 100)
+def TTS():
+    Message = enter.get()
+    speech = gTTS(text=Message)
+    speech.save("xman.mp3")
+    playsound("xman.mp3")
+def exit():
+    scr.destroy()
+
+def Reset():
+    Msg.set('')
+
+Button(scr,text='Play',font='arial 15 bold',command=TTS).place(x = 90,y = 140)
+Button(scr,text='Exit',font='arial 15 bold',bg='orange',command=exit).place(x = 190,y = 140)
+Button(scr,text='Reset',font='arial 15 bold',bg="gray",command=Reset).place(x = 290,y = 140)
+
+
+scr.mainloop()
